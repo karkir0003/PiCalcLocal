@@ -18,7 +18,7 @@
           <form>
     <h6>Select Decimal Approximation:</h6>
         <div class="box">
-            <select id="list" onchange="getSelectedValue();">
+            <select name="decimalPlaces" id="list" onchange="getSelectedValue();">
                 <option value="1">1 decimal</option>
                 <option value="2">2 decimals</option>
                 <option value="3">3 decimals</option>
@@ -43,10 +43,10 @@
     <br>
 
 </form>
-         <form>
+         <form id="speedSelection" method="POST" action="/speed">
     <h6>Select Approximation Speed:</h6>
         <div class="box">
-            <select id="list2" onchange="getSelectValue();">
+            <select name="speeds" id="list2" onchange="getSelectValue();">
                 <option value="fast">Fast</option>
                 <option value="slow">Slow</option>
             </select>
@@ -66,6 +66,11 @@
         <br>
         <br>
 </form>
+<div id="result">
+    {% if selectedSpeed is defined %}
+        You have selected: {{ selectedSpeed }}
+    {% endif %}
+  </div>
 
     </header>
 </body>
