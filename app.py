@@ -15,7 +15,7 @@ def picalc():
 @app.route("/computeResult", methods=['GET', 'POST'])
 def computeResult():
     form = InputForm(request.form)
-    if (request.method == 'POST' and form.validate()):
+    if request.method == 'POST' and form.validate():
         result= compute(form.decimalPlaces.data, form.speed.data)
     else:
         result = None
