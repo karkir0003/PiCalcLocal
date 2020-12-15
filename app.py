@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
-
+from PiCalc import compute
+from model import InputForm
 app = Flask(__name__)
 
 
@@ -11,9 +12,13 @@ def index():
 def picalc():
     return render_template('PiCalc.html')
 
-@app.route("/speed", methods=['POST'])
-def speed():
-    speed=request.form["speeds"]
-    return render_template('PiCalc.html', selectedSpeed=speed)
+@app.route("/computeResult", methods=['GET', 'POST'])
+def computeResult():
+    form = InputForm(request.form)
+    if (request.method == 'POST' and form.validate()):
+        result= compute(form.decimalPlaces.data, form.speed.data)
+    else:
+        result = None
+    return render_template("PiCalc.html", form=form, result=result)
 if __name__ == '__main__':
-   app.run()
+   app.run(debug=True)

@@ -15,7 +15,7 @@
         </a>
         <br>
         <br>
-          <form>
+          <!-- <form>
     <h6>Select Decimal Approximation:</h6>
         <div class="box">
             <select name="decimalPlaces" id="list" onchange="getSelectedValue();">
@@ -65,13 +65,29 @@
         <input type="submit" value="Calculate" href="/method/">
         <br>
         <br>
-</form>
-<div id="result">
+</form> -->
+<!-- <div id="result">
     {% if selectedSpeed is defined %}
         You have selected: {{ selectedSpeed }}
     {% endif %}
   </div>
 
-    </header>
+    </header> -->
+    <form method="post" action=computeResult>
+        <table>
+          {% for field in form %}
+            <tr>
+            <td>{{ field.name }}</td><td>{{ field }}</td>
+            <td>{{ field.label }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+        <p><input type=submit value=Compute></form></p>
+        
+        <p>
+        {% if result != None %}
+        <img src="{{ result }}" width=500>
+        {% endif %}
+        </p>
 </body>
 </html>

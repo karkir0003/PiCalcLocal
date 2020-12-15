@@ -1,8 +1,8 @@
 
-import math
 import matplotlib.pyplot as plt
+import os, time, glob
+import math
 import numpy as np
-import sys
 
 class PiCalc:
     # Num == number of decimals of approx
@@ -102,6 +102,17 @@ class PiCalc:
         ax.set_ylabel("Number of terms needed")
         ax.set_title("Slow approximation of pi performance")
         ax.xaxis.set_label_coords(1.05,0)
+        if not os.path.isdir('static'):
+            os.mkdir('static')
+        else:
+        # Remove old plot files
+            for filename in glob.glob(os.path.join('static', '*.png')):
+                os.remove(filename)
+        # Use time since Jan 1, 1970 in filename in order make
+        # a unique filename that the browser has not chached
+        plotfile = os.path.join('static', str(time.time()) + '.png')
+        plt.savefig(plotfile)
+        return plotfile
         plt.show()
 
     def plotFastApproximation(self):
@@ -121,40 +132,29 @@ class PiCalc:
         ax.set_ylabel("Number of terms needed")
         ax.set_title("Machin approximation of pi performance")
         ax.xaxis.set_label_coords(1.05,0)
+        if not os.path.isdir('static'):
+            os.mkdir('static')
+        else:
+        # Remove old plot files
+            for filename in glob.glob(os.path.join('static', '*.png')):
+                os.remove(filename)
+        # Use time since Jan 1, 1970 in filename in order make
+        # a unique filename that the browser has not chached
+        plotfile = os.path.join('static', str(time.time()) + '.png')
+        plt.savefig(plotfile)
+        return plotfile
         plt.show()
     def termMagnitude(self, i):
         return float((16 * (0.2 ** (2*i + 1)) - 4 * ((1/239) ** (2*i + 1)))/(2*i + 1))
 
-
-"""
-Arguments from sys.argv represent the entries that the user will have to input in the html website for the approximator to work
-
-Main challenge: when the user clicks submit, execute the main method with arguments from the html file
-"""
-def main():
-
-    #argument validation
-    if (len(sys.argv) < 3):
-        print("Try again with more arguments")
-        return 
-    if (int(sys.argv[1]) > 10):
-        print("Too many decimal places. Try again")
-        return 
-    obj = PiCalc(int(sys.argv[1]))
-
-    if (sys.argv[2] == "Machin Approximation"):
-        #return string might look like this in the website
-        print("Approximation of pi to {} decimal places is {}. {} terms needed to be summed up".format(sys.argv[1], obj.fast_pi_approximation(), obj.getNumberTermsMachinApprox()))
-        obj.plotFastApproximation()
-    elif (sys.argv[2] == "Slower Approximation"):
-        #return string mihgt look this on the website
-        print("Approximation of pi to {} decimal places is {}. {} terms needed to be summed up".format(sys.argv[1], obj.calculation_slow_approx(), obj.getNumberTermsSlowApprox()))
-        obj.plotSlowApproximation()
-    else:
-        print("Come back for newer approximation methods to be added!")
-        
-    return
+def compute(decimalPlaces, speed, resolution=500):
+    
+    obj = PiCalc(decimalPlaces)
+    print(speed)
+    if (speed == "Slow"):
+        return obj.plotSlowApproximation()
+    elif (speed == "Fast"):
+        return obj.plotFastApproximation()
 
 if __name__ == '__main__':
-    main()
-
+    print(compute(1,"fast"))
