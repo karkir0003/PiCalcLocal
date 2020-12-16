@@ -37,8 +37,7 @@ class PiCalc:
             return ""
 
     def getNumberTermsSlowApprox(self):
-        e = 10 ** (-1 * (
-                self.num + 1))  # using 10^(-n) doesn't guarantee nth decimal place is correct. Using 10^(-(n+1)) as thereshold does
+        e = 10 ** (-1 * (self.num + 1))  # using 10^(-n) doesn't guarantee nth decimal place is correct. Using 10^(-(n+1)) as thereshold does
         n = float((e ** (-1) - 1)) / 2
         if not isinstance(n, int):
             n = math.floor(n + 1)

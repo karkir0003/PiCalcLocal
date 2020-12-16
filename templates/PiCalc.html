@@ -30,6 +30,13 @@
             {% if result != None %}
             <img src="{{ result }}" width=500>
             {% endif %}
+            <div id="result">
+                {% if numTerms is defined %}
+                    {% if approximation is defined %}
+                        Pi as approximately{{ approximation }} with {{numTerms}} terms summed up
+                    {% endif %}
+                {% endif %}
+            </div>
             </p>
                     <br>
                     <br>
