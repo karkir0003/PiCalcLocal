@@ -16,6 +16,8 @@ def picalc():
 @app.route("/computeResult", methods=['GET', 'POST'])
 def computeResult():
     form = InputForm(request.form)
+    numTerms = 0
+    approximation = 0
     if request.method == 'POST' and form.validate():
         result= compute(form.decimalPlaces.data, form.speed.data)
         obj = PiCalc(int(form.decimalPlaces.data))
