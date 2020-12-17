@@ -34,5 +34,9 @@ def computeResult():
     else:
         result = None
     return render_template("PiCalc.html", form=form, result=result, numTerms=numTerms, approximation=approximation)
+
+@app.route("/stockMarketScraper")
+def stockScraper():
+    return render_template("StockScraper.html")
 if __name__ == '__main__':
    app.run(debug=True)
