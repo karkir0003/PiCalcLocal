@@ -2,17 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Currency Conversion</title>
+    <title>Currency Converter</title>
     <link rel="stylesheet" href="{{ url_for('static', filename= 'CSS/main.CSS') }}">
 </head>
 <body>
     <header>
-        <h1>Currency Conversion</h1>
+        <h1>Currency Converter</h1>
+        <br>
+        <a href= />
+        <button>Return</button>
+        </a>
+        <br>
         <br>
         <br>
         <p>
-            Enjoy!
+            Using the both the Machin & Arctan Taylor Series formulas, we approximate π to 'n' decimal places. <br>
+            The Machin formula is the fast approximation, while the Arctan Taylor Series is the slow approximation.
         </p>
+        <br>
+        <br>
+            <form method="post" action=computeConv style="text-align:center">
+            <table>
+              {% for field in form %}
+                <tr>
+                    <td>{{ field.label}}</td>
+                    <br>
+                    <td>{{ field }}</td>
+                    <br>
+
+                </tr>
+              {% endfor %}
+            </table>
+            <p>
+            <div id="result">
+                {{ baseCurr }} ===> {{ targetCurr }}
+            </div>
+            </p>
+                    <br>
+                    <br>
+                    <br>
+                <p><input type=submit value=Compute></form></p>
+            <br>
+            </form>
     </header>
 </body>
 </html>
