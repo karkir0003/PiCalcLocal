@@ -11,3 +11,25 @@ class InputForm(Form):
     speed = SelectField(label="Select Approximation Speed:", validators=[validators.InputRequired()],
                         choices=[('Slow', 'Slow'), ('Fast', 'Fast')],
                         )
+
+
+
+class CurrForm(Form):
+    style = {"style": "text-align:center"}
+    baseCurr = SelectField(
+        label='Select Base Currency:', default='USD',  validators=[validators.InputRequired()],
+        choices=[('USD', 'USD'), (2, 2), (3, 3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10)],
+        render_kw=style
+    )
+
+    baseCurrAmount = IntegerField(
+        label='Enter Base Amount:', default='1', validators=[validators.NumberRange(min=1), validators.InputRequired()],
+        render_kw=style
+    )
+
+
+    targetCurr = SelectField(
+        label='Select Target Currency:', default='EUR', validators=[validators.InputRequired()],
+        choices=[('USD', 'USD'), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)],
+        render_kw=style
+    )

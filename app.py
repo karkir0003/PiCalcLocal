@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from PiCalc import compute
 from PiCalc import PiCalc
 from model import InputForm
+from model import CurrForm
 app = Flask(__name__)
 
 
@@ -38,7 +39,20 @@ def computeResult():
     return render_template("PiCalc.html", form=form, result=result, numTerms=numTerms, approximation=approximation)
 
 @app.route("/CurrencyConv")
-def matchingGame():
+def currConv():
     return render_template("CurrencyConv.html")
+
+
+@app.route("/computeConv", methods=['GET', 'POST'])
+def computeConv():
+    form = CurrForm(request.form)
+    baseCurr = form.baseCurr.data
+    targetCurr = form.targetCurr.data
+    print(form.baseCurr.data)
+    return render_template("CurrencyConv.html", form=form, baseCurr=baseCurr, targetCurr=targetCurr)
+
+
 if __name__ == '__main__':
    app.run(debug=True)
+
+
