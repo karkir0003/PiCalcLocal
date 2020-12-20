@@ -51,7 +51,9 @@ def computeConv():
     print(form.baseCurr.data)
     return render_template("CurrencyConv.html", form=form, baseCurr=baseCurr, targetCurr=targetCurr)
 
-
+@app.route("/monteCarlo")
+def monteCarlo():
+    return render_template("PiApproxMonteCarlo.html")
 if __name__ == '__main__':
    app.run(debug=True)
 
