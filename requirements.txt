@@ -29,3 +29,4 @@ tornado @ file:///opt/concourse/worker/volumes/live/05341796-4198-4ded-4a9a-332f
 urllib3 @ file:///tmp/build/80754af9/urllib3_1606938623459/work
 Werkzeug==1.0.1
 WTForms==2.3.3
+gunicorn
